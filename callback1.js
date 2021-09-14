@@ -1,10 +1,15 @@
-const data = require('./jsonfiles/boards.json');
-
-function callback1 (id, cb){
+function callback1 (name, data, cb){
     setTimeout(() => {
-        const result = cb(id, data);
-        console.log('3',result);
-        return result;
+        let result = data.find(element => element.name === name);
+        let err = new Error("Data Not Found");
+        result ? cb(null, result) : cb(err)
+        if (result){
+            cb(null, result);
+            return result;
+        }else{
+            cb(err);
+            return err;
+        }
     }, 2 * 1000);
 }
 

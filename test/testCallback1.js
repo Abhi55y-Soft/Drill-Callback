@@ -1,13 +1,12 @@
 const callback1 = require('../callback1');
+const data = require('../jsonfiles/boards.json');
 
-const cb = (id, data) => {
-    let result = [];
-    data.forEach(element => {
-        if(element.id === id){
-            result = element; 
-        }
-    });
-    return result; 
+const cb = (err, result) => {
+    if (result){
+        console.log(result);
+    }else{
+        console.log(err);
+    }
 }
-callback1("mcu453ed", cb);
+callback1("Thanos", data, cb);
 

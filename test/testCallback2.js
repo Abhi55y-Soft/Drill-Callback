@@ -1,12 +1,11 @@
 const callback2 = require('../callback2');
+const data = require('../jsonfiles/lists.json');
 
-const cb = (id, data) => {
-    let result = [];
-    Object.entries(data).forEach(element => {
-        if(element[0] === id){
-            result = element; 
-        }
-    });
-    return result; 
+const cb = (err, result) => {
+    if (result){
+        console.log(result);
+    }else{
+        console.log(err);
+    }
 }
-callback2("mcu453ed", cb);
+callback2("mcu453ed", data, cb)

@@ -1,10 +1,15 @@
-const data = require('./jsonfiles/lists.json');
-
-function callback2 (id, cb){
+function callback2 (id, data, cb){
     setTimeout(() => {
-        const result = cb(id, data);
-        console.log('3',result);
-        return result;
+        let result = Object.entries(data).find(element => element[0] === id);
+        let err = new Error("Data Not Found");
+        result ? cb(null, result) : cb(err)
+        if (result){
+            cb(null, result);
+            return result;
+        }else{
+            cb(err);
+            return err;
+        }
     }, 2 * 1000);
 }
 
