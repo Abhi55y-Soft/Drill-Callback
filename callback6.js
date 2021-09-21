@@ -9,7 +9,9 @@
 
 function callback6(callback1, callback2, callback3, boards, lists, cards){ 
     setTimeout(() => {
-        callback1("Thanos", boards, (err, result) => {
+        let id = '';
+        boards.map(element => {if (element.name === "Thanos") id = element.id})
+        callback1(id, boards, (err, result) => {
             if (result){
                 console.log(result);
                 callback2(result.id, lists, (err, result) => {
@@ -20,8 +22,6 @@ function callback6(callback1, callback2, callback3, boards, lists, cards){
                             callback3(element.id, cards, (err, result) => {
                                 if (result){
                                     console.log(result);
-                                }else{
-                                    console.log(err);
                                 }
                             });
                         });   
